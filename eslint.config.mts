@@ -25,7 +25,8 @@ export default tseslint.config(
             "@stylistic/indent": ["error", 4],
             "@stylistic/comma-dangle": ["error"],
             "@stylistic/arrow-parens": ["error", "as-needed"],
-            "@stylistic/quotes": ["error", "double"]
+            "@stylistic/quotes": ["error", "double"],
+            "@stylistic/semi": ["error"]
         },
     },
     // @ts-expect-error
