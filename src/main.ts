@@ -22,7 +22,7 @@ export default class PeriodicQuotesWidget extends Plugin {
         this.lastTimeoutID = window.setTimeout(() => nextHour.diff(now, "milliseconds"));
     }
 
-    async onload() {
+    onload() {
         this.reloadQuote();
         this.registerInterval(window.setInterval(() => this.reloadQuote(), 1000 * 60 * 60 * 6));
 
