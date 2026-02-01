@@ -5,7 +5,10 @@ import { VariableWithCallbacks } from "VariableWithCallbacks";
 import quotes from "quotes.json";
 
 export default class PeriodicQuotesWidget extends Plugin {
-    quote = new VariableWithCallbacks<Quote | undefined>(undefined);
+    quote = new VariableWithCallbacks<{
+        am: Quote,
+        pm: Quote
+    } | undefined>(undefined);
     lastTimeoutID: number;
 
     reloadQuote() {
@@ -16,10 +19,13 @@ export default class PeriodicQuotesWidget extends Plugin {
             const j = Math.floor(rng() * (i + 1));
             [workingQuotes[i], workingQuotes[j]] = [workingQuotes[j]!, workingQuotes[i]!];
         }
-        this.quote.value(workingQuotes[now.dayOfYear() * (now.hour() >= 12 ? 2 : 1)]);
+        this.quote.value({
+            am: workingQuotes[now.dayOfYear()]!,
+            pm: workingQuotes[now.dayOfYear() * 2]!
+        });
 
         const nextHour = now.clone().add(1, "hour").startOf("hour");
-        this.lastTimeoutID = window.setTimeout(() => nextHour.diff(now, "milliseconds"));
+        this.lastTimeoutID = window.setTimeout(() => this.reloadQuote(), nextHour.diff(now, "milliseconds"));
     }
 
     onload() {
@@ -31,9 +37,7 @@ export default class PeriodicQuotesWidget extends Plugin {
             (content, el, ctx) => {
                 let config: Config | null = null;
                 try {
-                    config = parseYaml(content) as {
-                        background: boolean;
-                    };
+                    config = parseYaml(content) as Config;
                 }
                 catch { /*  */ }
                 ctx.addChild(new PeriodicQuoteComponent(el, this.quote, config));

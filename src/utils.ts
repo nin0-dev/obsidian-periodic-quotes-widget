@@ -15,4 +15,5 @@ export type Quote = {
 
 export type Config = {
     background: boolean;
+    period: "daily" | "bidaily";
 };
