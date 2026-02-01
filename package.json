@@ -1,6 +1,6 @@
 {
     "name": "periodic-quotes-widget",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Show a quote in 'periodic-quote' codeblocks and refresh it (bi)daily",
     "main": "main.js",
     "type": "module",
