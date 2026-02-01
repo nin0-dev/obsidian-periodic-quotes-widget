@@ -1,7 +1,7 @@
 {
-    "name": "obsidian-sample-plugin",
+    "name": "periodic-quotes-widget",
     "version": "1.0.0",
-    "description": "This is a sample plugin for Obsidian (https://obsidian.md)",
+    "description": "Show a quote in 'periodic-quote' codeblocks and refresh it (bi)daily",
     "main": "main.js",
     "type": "module",
     "scripts": {

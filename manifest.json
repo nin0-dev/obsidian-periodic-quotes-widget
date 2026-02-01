@@ -1,9 +1,9 @@
 {
-    "id": "sample-plugin",
-    "name": "Sample Plugin",
+    "id": "periodic-quotes-widget",
+    "name": "Periodic Quotes Widget",
     "version": "1.0.0",
     "minAppVersion": "0.15.0",
-    "description": "Demonstrates some of the capabilities of the Obsidian API.",
+    "description": "Show a quote in 'periodic-quote' codeblocks and refresh it (bi)daily",
     "author": "nin0",
     "authorUrl": "https://nin0.dev",
     "isDesktopOnly": false

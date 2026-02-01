@@ -1,8 +1,7 @@
 import { Plugin } from "obsidian";
 
-export default class MyPlugin extends Plugin {
-    async onload() {
-    }
+export default class PeriodicQuotesWidget extends Plugin {
+    async onload() {}
 
     onunload() {}
 }
