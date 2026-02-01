@@ -1,5 +1,5 @@
-import { mulberry32, Quote } from "utils";
-import { moment, Plugin } from "obsidian";
+import { Config, mulberry32, Quote } from "utils";
+import { moment, parseYaml, Plugin } from "obsidian";
 import { PeriodicQuoteComponent } from "PeriodicQuoteComponent";
 import { VariableWithCallbacks } from "VariableWithCallbacks";
 import quotes from "quotes.json";
@@ -9,8 +9,6 @@ export default class PeriodicQuotesWidget extends Plugin {
     lastTimeoutID: number;
 
     reloadQuote() {
-        const bidaily = true;
-
         const now = moment();
         const workingQuotes = [...(quotes as Quote[])];
         const rng = mulberry32(now.year() + 1);
@@ -18,7 +16,7 @@ export default class PeriodicQuotesWidget extends Plugin {
             const j = Math.floor(rng() * (i + 1));
             [workingQuotes[i], workingQuotes[j]] = [workingQuotes[j]!, workingQuotes[i]!];
         }
-        this.quote.value(workingQuotes[now.dayOfYear() * (bidaily ? (now.hour() >= 12 ? 2 : 1) : 1)]);
+        this.quote.value(workingQuotes[now.dayOfYear() * (now.hour() >= 12 ? 2 : 1)]);
 
         const nextHour = now.clone().add(1, "hour").startOf("hour");
         this.lastTimeoutID = window.setTimeout(() => nextHour.diff(now, "milliseconds"));
@@ -30,8 +28,15 @@ export default class PeriodicQuotesWidget extends Plugin {
 
         this.registerMarkdownCodeBlockProcessor(
             "periodic-quote",
-            (_, el, ctx) => {
-                ctx.addChild(new PeriodicQuoteComponent(el, this.quote));
+            (content, el, ctx) => {
+                let config: Config | null = null;
+                try {
+                    config = parseYaml(content) as {
+                        background: boolean;
+                    };
+                }
+                catch { /*  */ }
+                ctx.addChild(new PeriodicQuoteComponent(el, this.quote, config));
             }
         );
     }

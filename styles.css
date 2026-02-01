@@ -1,8 +1,31 @@
-/*
+.periodic-quote {
+    padding: var(--size-4-2) var(--size-4-3);
+    border-left: var(--blockquote-border-thickness) solid
+        var(--blockquote-border-color);
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-2-2);
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+.periodic-quote-bg {
+    background-color: var(--background-primary-alt);
+    border-radius: 0 var(--radius-s) var(--radius-s) 0;
+}
 
-If your plugin does not need CSS, delete this file.
+.periodic-quote-quote {
+    &::before {
+        content: "“";
+    }
+    &::after {
+        content: "”";
+    }
+    font-size: calc(var(--font-text-size) + 1px);
+    font-style: italic;
+}
 
-*/
+.periodic-quote-author {
+    &::before {
+        content: "— ";
+    }
+    margin-left: auto;
+}
