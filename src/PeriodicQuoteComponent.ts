@@ -13,7 +13,7 @@ export class PeriodicQuoteComponent extends MarkdownRenderChild {
         this.el = el;
         this.quote = quote;
         this.config = {
-            background: config?.background ?? true
+            background: config?.background ?? false
         };
     }
 

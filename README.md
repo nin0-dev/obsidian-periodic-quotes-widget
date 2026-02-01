@@ -20,5 +20,5 @@ Make a code block with the `periodic-quote` language.
 You can configure the plugin per-codeblock by writing yaml inside of it:
 
 ```yaml
-background: true # Show a background in the quote block, or hide it to match actual blockquote styling
+background: false # Show a background in the quote block, or hide it to match actual blockquote styling
 ```
