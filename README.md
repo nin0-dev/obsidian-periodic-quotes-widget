@@ -1,7 +1,6 @@
 # Periodic Quotes Widget
 
-> [!INFO]
-> 
+> [!NOTE]
 > Quote data comes from the [Quotable API](https://github.com/lukePeavey/quotable), but that API is never contacted at runtime. The plugin doesn't use
 > the network.
 
